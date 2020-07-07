@@ -12,17 +12,23 @@ public class Venta {
     private boolean tipoDePago;
     private final Date fechaD = new Date();
     private final String fecha;
-    
-    private final Pedido pedido;
+    private float total;
+    private String doc;
+    private String nombreC;
     
     private Factura factura;
     private Boleta boleta;
+    private final Pedido pedido;
+    
     
     
     ArrayList<String>detalles=new ArrayList<String>();
     
-    public Venta( Pedido pedido, float tiempo, boolean tipoDePago) {
-        this.pedido = pedido;
+    public Venta(Pedido pedido,String nombreC,String doc, float total, float tiempo, boolean tipoDePago) {
+        this.nombreC=nombreC;
+        this.pedido=pedido;
+        this.doc=doc;
+        this.total=total;
         this.tiempo = tiempo;
         this.tipoDePago = tipoDePago;
         this.fecha=String.valueOf(fechaD);
@@ -40,6 +46,18 @@ public class Venta {
         }
         
     
+    }
+
+    public float getTotal() {
+        return total;
+    }
+
+    public String getDoc() {
+        return doc;
+    }
+
+    public String getNombreC() {
+        return nombreC;
     }
     
     public void registrarVenta(){
@@ -67,7 +85,11 @@ public class Venta {
     public void setTipoDePago(boolean tipoDePago) {
         this.tipoDePago = tipoDePago;
     }
+    
 
+    public boolean getTipoDePago() {
+        return tipoDePago;
+    }
     public Factura getFactura() {
         return factura;
     }
@@ -75,6 +97,9 @@ public class Venta {
     public Boleta getBoleta() {
         return boleta;
     }
-    
+
+    public Date getFechaD() {
+        return fechaD;
+    }
     
 }

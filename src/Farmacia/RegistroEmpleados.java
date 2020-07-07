@@ -6,6 +6,11 @@
 package Farmacia;
 
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -23,22 +28,78 @@ class RegistroEmpleados {
     
     
 
-    public RegistroEmpleados() {
+    public RegistroEmpleados(Farmacia sedeFarmacia) {
+        actualizarLista(sedeFarmacia);
     }
     /**
-     * agrega empleado
-     * @param cargo, dni
+     * agrega empleado en memoria(ArrayList)
     */  
-    public void agregarEmpleado(String dni, String cargo, String nombre, String telefono, String correo, boolean genero, float sueldo, Farmacia sedeFarmacia){
+    public void agregarEmpleado_array(String dni, String cargo, String nombre, String telefono, String correo, boolean genero, float sueldo, Farmacia sedeFarmacia){
         Empleado e = new Empleado(dni,cargo,nombre,telefono,correo,genero, sueldo, sedeFarmacia);                
         empleados.add(e);        
     }
-    public void eliminarEmpleado(String cod){
+    /**
+     * registra empleado en Base de datos
+    */  
+    public void agregarEmpleado(String dni, String cargo, String nombre, String telefono, String correo, boolean genero, float sueldo, Farmacia sedeFarmacia){
+        String g=genero?"Masculino":"Femenino";
+        try {
+            //Se crea la conexión con la base de datos
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3308/farmacia", "root", "");
+            //modelo de sentencia
+            PreparedStatement ingreso = conexion.prepareStatement("INSERT INTO empleados VALUES (?,?,?,?,?,?,?)");
+            //formato para la sentencia
+            ingreso.setString(1, dni);ingreso.setString(2, nombre);ingreso.setString(3, cargo);
+            ingreso.setString(4, telefono);ingreso.setString(5, correo);ingreso.setString(6, g);ingreso.setFloat(7, sueldo);
+            ingreso.executeUpdate();
+            //cierre de conexión
+            actualizarLista(sedeFarmacia);
+            conexion.close();
+        } catch (SQLException ex) {
+            System.out.println("Fallo en conexión2");
+        }       
+    }
+    /**
+     * elimina empleado en memoria(ArrayList)
+    */  
+    public void eliminarEmpleado_array(String cod){
         for(int i=0;i<empleados.size();i++){
              if(empleados.get(i).getDni().equals(cod)){
                empleados.remove(i);
              }
          }
+    }
+    /**
+     * elimina empleado en Base de datos
+    */ 
+     public void eliminarEmpleado(String cod, Farmacia sedeFarmacia){
+        try {
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3308/farmacia", "root", "");
+            PreparedStatement delete = conexion.prepareStatement("DELETE FROM `empleados` WHERE `empleados`.`dni` =?");
+            delete.setString(1, cod);
+            delete.executeUpdate();
+            actualizarLista(sedeFarmacia);
+            conexion.close();
+        } catch (SQLException ex) {
+            System.out.println("Fallo en conexión");
+        }
+    }
+    private void actualizarLista(Farmacia sedeFarmacia) {
+        try {
+            empleados.clear();
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3308/farmacia", "root", "");
+            PreparedStatement sentencia = conexion.prepareStatement("SELECT * FROM empleados");
+            ResultSet rs = sentencia.executeQuery();
+            while (rs.next()) {
+                boolean t=(rs.getString("genero").equalsIgnoreCase("Masculino"));
+                Empleado e = new Empleado(rs.getString("dni"), rs.getString("cargo"), rs.getString("nombre"), rs.getString("telefono"), rs.getString("correo"), t, rs.getFloat("sueldo"), sedeFarmacia);
+                empleados.add(e);
+            }
+            rs.close();
+            conexion.close();
+        } catch (SQLException ex) {
+            System.out.println("Fallo en conexión");
+        }
     }
    public void actualizarDatos(String cod){
    }

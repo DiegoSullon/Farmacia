@@ -15,13 +15,13 @@ public class Farmacia {
     
     
 
-    private RegistroVentas rVentas = new RegistroVentas();
     
     
 
+    private RegistroVentas rVentas = new RegistroVentas();
     private Inventario inventario = new Inventario();
     
-    private RegistroEmpleados r_empleados = new RegistroEmpleados();
+    private RegistroEmpleados r_empleados = new RegistroEmpleados(this);
     
     
     

@@ -37,7 +37,7 @@ public class CuadrarCaja extends javax.swing.JFrame {
 
    private void obtenerLista(ArrayList<Venta> ventas) {
         for (int i = 0; i < ventas.size(); i++) {
-            jlista.addElement(ventas.get(i).getPedido().getNombreC()+" Total: "+ventas.get(i).getPedido().getTotal()+" "+ventas.get(i).getPedido().getDocC());
+            jlista.addElement(ventas.get(i).getNombreC()+" Total: "+ventas.get(i).getTotal()+" Doc: "+ventas.get(i).getDoc());
         }
         if (ventas.isEmpty()) {
             jlista.addElement("No hay ventas registradas.");

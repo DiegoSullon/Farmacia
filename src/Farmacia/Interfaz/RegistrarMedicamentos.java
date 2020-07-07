@@ -25,9 +25,9 @@ public class RegistrarMedicamentos extends javax.swing.JFrame {
     
     public RegistrarMedicamentos(Empleado empleado, Farmacia farmacia) {
         this.farmacia = farmacia;
-        farmacia.getInventario().añadirMedicamento("ASD", "001", 12F, "MARCA", 2, 5, 6);
-        farmacia.getInventario().añadirMedicamento("qwe", "002", 12F, "MARCA", 2, 5, 6);
-        farmacia.getInventario().añadirMedicamento("zxc", "003", 12F, "MARCA", 2, 5, 6);
+//        farmacia.getInventario().añadirMedicamento("ASD", "001", 12F, "MARCA", 2, 5, 6);
+//        farmacia.getInventario().añadirMedicamento("qwe", "002", 12F, "MARCA", 2, 5, 6);
+//        farmacia.getInventario().añadirMedicamento("zxc", "003", 12F, "MARCA", 2, 5, 6);
         initComponents();
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -159,7 +159,7 @@ public class RegistrarMedicamentos extends javax.swing.JFrame {
         int cantidad = (int) inCantidad.getValue();
         med=farmacia.getInventario().buscarMedicamento(codigo);
         if(!nombre.isEmpty()&&!codigo.isEmpty()&&!marca.isEmpty()&&med==null&&codigo.length()==3){
-            farmacia.getInventario().añadirMedicamento(nombre, codigo, precio, marca, cantidad, 2,2);
+            farmacia.getInventario().añadirMedicamentos(nombre, codigo, precio, marca, cantidad, null,null);
             this.setVisible(false);
             this.dispose();
         }
