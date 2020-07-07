@@ -49,7 +49,7 @@ public class Inventario {
         boolean t = true;
         try {
             //Se crea la conexión con la base de datos
-            Connection miConexion = DriverManager.getConnection("jdbc:mysql://localhost:3308/farmacia", "root", "");
+            Connection miConexion = DriverManager.getConnection("jdbc:mysql://bwfvy0vhvjg6ubvv52vs-mysql.services.clever-cloud.com:3306/bwfvy0vhvjg6ubvv52vs", "utosyldwfdhnnlqu", "UyLT9X6DQx1p16jahDke");
             //modelo de sentencia
             PreparedStatement miSentencia = miConexion.prepareStatement("SELECT * FROM medicamentos "
                     + "WHERE cod_medicamento=?");
@@ -107,7 +107,7 @@ public class Inventario {
     public void eliminarMedicamentos(String codigo) {
         boolean t = true;
         try {
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3308/farmacia", "root", "");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://bwfvy0vhvjg6ubvv52vs-mysql.services.clever-cloud.com:3306/bwfvy0vhvjg6ubvv52vs", "utosyldwfdhnnlqu", "UyLT9X6DQx1p16jahDke");
             PreparedStatement miSentencia = conexion.prepareStatement("SELECT * FROM medicamentos "
                     + "WHERE cod_medicamento=?");
             //formato para la sentencia
@@ -140,7 +140,7 @@ public class Inventario {
     private void actualizarLista() {
         try {
             medicamentos.clear();
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3308/farmacia", "root", "");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://bwfvy0vhvjg6ubvv52vs-mysql.services.clever-cloud.com:3306/bwfvy0vhvjg6ubvv52vs", "utosyldwfdhnnlqu", "UyLT9X6DQx1p16jahDke");
             PreparedStatement sentencia = conexion.prepareStatement("SELECT * FROM medicamentos");
             ResultSet rs = sentencia.executeQuery();
             while (rs.next()) {

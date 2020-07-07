@@ -45,7 +45,7 @@ class RegistroEmpleados {
         String g=genero?"Masculino":"Femenino";
         try {
             //Se crea la conexión con la base de datos
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3308/farmacia", "root", "");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://bwfvy0vhvjg6ubvv52vs-mysql.services.clever-cloud.com:3306/bwfvy0vhvjg6ubvv52vs", "utosyldwfdhnnlqu", "UyLT9X6DQx1p16jahDke");
             //modelo de sentencia
             PreparedStatement ingreso = conexion.prepareStatement("INSERT INTO empleados VALUES (?,?,?,?,?,?,?)");
             //formato para la sentencia
@@ -74,7 +74,7 @@ class RegistroEmpleados {
     */ 
      public void eliminarEmpleado(String cod, Farmacia sedeFarmacia){
         try {
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3308/farmacia", "root", "");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://bwfvy0vhvjg6ubvv52vs-mysql.services.clever-cloud.com:3306/bwfvy0vhvjg6ubvv52vs", "utosyldwfdhnnlqu", "UyLT9X6DQx1p16jahDke");
             PreparedStatement delete = conexion.prepareStatement("DELETE FROM `empleados` WHERE `empleados`.`dni` =?");
             delete.setString(1, cod);
             delete.executeUpdate();
@@ -87,7 +87,7 @@ class RegistroEmpleados {
     private void actualizarLista(Farmacia sedeFarmacia) {
         try {
             empleados.clear();
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3308/farmacia", "root", "");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://bwfvy0vhvjg6ubvv52vs-mysql.services.clever-cloud.com:3306/bwfvy0vhvjg6ubvv52vs", "utosyldwfdhnnlqu", "UyLT9X6DQx1p16jahDke");
             PreparedStatement sentencia = conexion.prepareStatement("SELECT * FROM empleados");
             ResultSet rs = sentencia.executeQuery();
             while (rs.next()) {

@@ -39,7 +39,7 @@ public class RegistroClientes {
     public void agregarEmpresa(String ruc, String nombre){
         try {
             //Se crea la conexión con la base de datos
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3308/farmacia", "root", "");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://bwfvy0vhvjg6ubvv52vs-mysql.services.clever-cloud.com:3306/bwfvy0vhvjg6ubvv52vs", "utosyldwfdhnnlqu", "UyLT9X6DQx1p16jahDke");
             //modelo de sentencia
             PreparedStatement ingreso = conexion.prepareStatement("INSERT INTO clientes_empresa VALUES (?,?,?)");
             //formato para la sentencia
@@ -66,7 +66,7 @@ public class RegistroClientes {
     public void agregarPersona(String dni, String nombre){
         try {
             //Se crea la conexión con la base de datos
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3308/farmacia", "root", "");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://bwfvy0vhvjg6ubvv52vs-mysql.services.clever-cloud.com:3306/bwfvy0vhvjg6ubvv52vs", "utosyldwfdhnnlqu", "UyLT9X6DQx1p16jahDke");
             //modelo de sentencia
             PreparedStatement ingreso = conexion.prepareStatement("INSERT INTO clientes_persona VALUES (?,?,?)");
             //formato para la sentencia
@@ -82,7 +82,7 @@ public class RegistroClientes {
     private void actualizarListaEmpresas() {
         try {
             empresas.clear();
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3308/farmacia", "root", "");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://bwfvy0vhvjg6ubvv52vs-mysql.services.clever-cloud.com:3306/bwfvy0vhvjg6ubvv52vs", "utosyldwfdhnnlqu", "UyLT9X6DQx1p16jahDke");
             PreparedStatement sentencia = conexion.prepareStatement("SELECT * FROM clientes_empresa");
             ResultSet rs = sentencia.executeQuery();
             while (rs.next()) {
@@ -98,7 +98,7 @@ public class RegistroClientes {
     private void actualizarListaPersonas() {
         try {
             personas.clear();
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3308/farmacia", "root", "");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://bwfvy0vhvjg6ubvv52vs-mysql.services.clever-cloud.com:3306/bwfvy0vhvjg6ubvv52vs", "utosyldwfdhnnlqu", "UyLT9X6DQx1p16jahDke");
             PreparedStatement sentencia = conexion.prepareStatement("SELECT * FROM clientes_persona");
             ResultSet rs = sentencia.executeQuery();
             while (rs.next()) {
